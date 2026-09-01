@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mis Viajes">
+  <title>Mis Viajes</title>
+  <style>
+    :root{--bg:#07101d;--panel:#101b2c;--panel2:#152238;--text:#f7f9fc;--muted:#91a1b8;--blue:#6c8cff;--blue2:#4f6ee8;--green:#31d68b;--yellow:#ffc857;--red:#ff647c;--line:rgba(255,255,255,.09);--shadow:0 18px 45px rgba(0,0,0,.28)}
+    *{box-sizing:border-box} html{background:var(--bg)} body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -15%,#1a3159 0,transparent 40%),var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit} button{cursor:pointer}.app{width:min(100%,560px);margin:auto;padding:max(20px,env(safe-area-inset-top)) 16px max(34px,env(safe-area-inset-bottom))}
+    header{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 18px}.brand{font-size:21px;font-weight:800;letter-spacing:-.4px}.icon-btn{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.06);color:#fff}.icon-btn:active,.primary:active,.danger:active{transform:scale(.98)}
+    .hero{padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:26px;background:linear-gradient(145deg,rgba(29,47,76,.98),rgba(13,25,43,.98));box-shadow:var(--shadow)}.eyebrow{color:var(--muted);font-size:13px;font-weight:650}.total{margin:3px 0 22px;font-size:42px;font-weight:850;letter-spacing:-2px}.goal-row{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:9px}.goal-text{font-size:13px;color:#c4cede}.goal-percent{font-size:15px;font-weight:800}.track{height:11px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.09)}.bar{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--blue),#a986ff);transition:width .45s ease}.goal-detail{margin-top:9px;color:var(--muted);font-size:12px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{min-width:0;padding:15px 9px;text-align:center;border:1px solid var(--line);border-radius:18px;background:rgba(16,27,44,.88)}.stat strong{display:block;font-size:18px;letter-spacing:-.4px;overflow:hidden;text-overflow:ellipsis}.stat span{display:block;margin-top:2px;color:var(--muted);font-size:11px}
+    .card{margin-top:14px;padding:20px;border:1px solid var(--line);border-radius:23px;background:var(--panel);box-shadow:0 10px 28px rgba(0,0,0,.13)}h2{margin:0 0 16px;font-size:17px;letter-spacing:-.2px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;margin:0 0 7px;color:var(--muted);font-size:12px;font-weight:650}.input-wrap{display:flex;align-items:center;height:51px;padding:0 14px;border:1px solid var(--line);border-radius:15px;background:var(--panel2)}.input-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(108,140,255,.13)}.prefix,.suffix{color:var(--muted);font-size:13px}.input-wrap input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:17px;font-weight:700}.primary{width:100%;height:52px;margin-top:15px;border:0;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;font-weight:800;box-shadow:0 10px 24px rgba(79,110,232,.25)}
+    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.section-head h2{margin:0}.count{padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.07);color:var(--muted);font-size:11px}.trip{display:grid;grid-template-columns:12px 1fr auto;gap:12px;align-items:center;padding:15px 0;border-top:1px solid var(--line)}.trip:first-of-type{border-top:0}.dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 15px currentColor}.trip-main strong,.trip-value strong{display:block}.trip-main small,.trip-value small{color:var(--muted)}.trip-value{text-align:right}.delete{margin-top:5px;padding:2px 0;border:0;background:none;color:#8594aa;font-size:11px}.delete:hover{color:var(--red)}.empty{padding:26px 10px;text-align:center;color:var(--muted)}.empty b{display:block;margin-bottom:3px;color:#c6d0df}
+    dialog{width:min(calc(100% - 28px),500px);padding:0;border:1px solid var(--line);border-radius:24px;background:var(--panel);color:#fff;box-shadow:var(--shadow)}dialog::backdrop{background:rgba(1,6,14,.76);backdrop-filter:blur(5px)}.modal{padding:22px}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.modal-head h2{margin:0}.modal .field{margin-top:14px}.hint{margin:13px 0 0;color:var(--muted);font-size:12px}.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.pill{padding:5px 9px;border-radius:99px;font-size:11px;font-weight:750}.green{color:var(--green)}.yellow{color:var(--yellow)}.red{color:var(--red)}.pill.green{background:rgba(49,214,139,.12)}.pill.yellow{background:rgba(255,200,87,.12)}.pill.red{background:rgba(255,100,124,.12)}.danger{width:100%;margin-top:12px;padding:12px;border:1px solid rgba(255,100,124,.28);border-radius:14px;background:transparent;color:var(--red);font-weight:700}.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));z-index:5;transform:translate(-50%,20px);padding:11px 16px;border-radius:99px;background:#f7f9fc;color:#101827;font-size:13px;font-weight:750;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:370px){.total{font-size:36px}.fields{grid-template-columns:1fr}.stats{gap:7px}.stat strong{font-size:15px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header><div class="brand">Mis Viajes</div><button class="icon-btn" id="openSettings" aria-label="Abrir ajustes" title="Ajustes">⚙︎</button></header>
+    <section class="hero" aria-label="Resumen de ganancias">
+      <div class="eyebrow">Total acumulado</div><div class="total" id="totalMoney">$0</div>
+      <div class="goal-row"><span class="goal-text">Meta <strong id="goalMoney">$500.000</strong></span><span class="goal-percent" id="goalPercent">0%</span></div>
+      <div class="track" role="progressbar" aria-label="Progreso hacia la meta"><div class="bar" id="goalBar"></div></div><div class="goal-detail" id="goalDetail">Te faltan $500.000 para llegar</div>
+    </section>
+    <section class="stats" aria-label="Estadísticas"><div class="stat"><strong id="tripCount">0</strong><span>Viajes</span></div><div class="stat"><strong id="totalKm">0 km</strong><span>Distancia</span></div><div class="stat"><strong id="avgKm">$0</strong><span>Promedio / km</span></div></section>
+    <section class="card"><h2>Registrar viaje</h2><form id="tripForm"><div class="fields"><div class="field"><label for="km">Kilómetros</label><div class="input-wrap"><input id="km" name="km" inputmode="decimal" placeholder="0,0" autocomplete="off" required><span class="suffix">km</span></div></div><div class="field"><label for="amount">Valor recibido</label><div class="input-wrap"><span class="prefix">$</span><input id="amount" name="amount" inputmode="numeric" placeholder="0" autocomplete="off" required></div></div></div><button class="primary" type="submit">Guardar viaje</button></form></section>
+    <section class="card"><div class="section-head"><h2>Historial</h2><span class="count" id="historyCount">0 viajes</span></div><div id="history"></div></section>
+  </main>
+  <dialog id="settings"><form method="dialog" class="modal" id="settingsForm"><div class="modal-head"><h2>Ajustes</h2><button class="icon-btn" value="cancel" aria-label="Cerrar">×</button></div><div class="field"><label for="goalInput">Meta de ganancias</label><div class="input-wrap"><span class="prefix">$</span><input id="goalInput" inputmode="numeric" required></div></div><div class="field"><label for="greenInput">Verde desde ($ por km)</label><div class="input-wrap"><span class="prefix">$</span><input id="greenInput" inputmode="numeric" required></div></div><div class="field"><label for="yellowInput">Amarillo desde ($ por km)</label><div class="input-wrap"><span class="prefix">$</span><input id="yellowInput" inputmode="numeric" required></div></div><div class="legend"><span class="pill green">● Buen viaje</span><span class="pill yellow">● Conveniente</span><span class="pill red">● Bajo rendimiento</span></div><p class="hint">Los valores iguales o mayores al umbral verde serán verdes; los que superen el amarillo serán amarillos.</p><button class="primary" value="default">Guardar ajustes</button><button class="danger" type="button" id="clearData">Eliminar todos los viajes</button></form></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    (() => {
+      'use strict';
+      const KEY='mis-viajes-data-v1';
+      const defaults={goal:500000,green:1000,yellow:700,trips:[]};
+      const $=id=>document.getElementById(id);
+      const money=n=>new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(n);
+      const number=n=>new Intl.NumberFormat('es-CL',{maximumFractionDigits:1}).format(n);
+      const parseValue=value=>Number(String(value).replace(/\s/g,'').replace(/\./g,'').replace(',','.'));
+      const escape=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+      let data=load();
+      function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&Array.isArray(saved.trips))return {...defaults,...saved}}catch(e){}return {...defaults,trips:[]}}
+      function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+      function notify(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>$('toast').classList.remove('show'),1800)}
+      function rating(rate){return rate>=data.green?'green':rate>=data.yellow?'yellow':'red'}
+      function render(){
+        const total=data.trips.reduce((s,t)=>s+t.amount,0), km=data.trips.reduce((s,t)=>s+t.km,0), avg=km?total/km:0, progress=data.goal?total/data.goal*100:0;
+        $('totalMoney').textContent=money(total);$('goalMoney').textContent=money(data.goal);$('goalPercent').textContent=`${Math.round(progress)}%`;$('goalBar').style.width=`${Math.min(100,Math.max(0,progress))}%`;$('goalBar').parentElement.setAttribute('aria-valuenow',Math.round(progress));
+        $('goalDetail').textContent=total>=data.goal?`¡Meta superada por ${money(total-data.goal)}!`:`Te faltan ${money(data.goal-total)} para llegar`;
+        $('tripCount').textContent=data.trips.length;$('totalKm').textContent=`${number(km)} km`;$('avgKm').textContent=money(avg);$('historyCount').textContent=`${data.trips.length} ${data.trips.length===1?'viaje':'viajes'}`;
+        $('history').innerHTML=data.trips.length?data.trips.slice().reverse().map(t=>{const rate=t.amount/t.km,c=rating(rate),date=new Intl.DateTimeFormat('es-CL',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(t.date));return `<article class="trip"><span class="dot ${c}" aria-label="Clasificación ${c}"></span><div class="trip-main"><strong>${number(t.km)} km</strong><small>${escape(date)} · ${money(rate)}/km</small></div><div class="trip-value"><strong>${money(t.amount)}</strong><button class="delete" data-id="${escape(t.id)}">Eliminar</button></div></article>`}).join(''):'<div class="empty"><b>Aún no hay viajes</b>Registra el primero para ver tus resultados.</div>';
+      }
+      $('tripForm').addEventListener('submit',e=>{e.preventDefault();const km=parseValue($('km').value),amount=parseValue($('amount').value);if(!Number.isFinite(km)||km<=0||!Number.isFinite(amount)||amount<=0){notify('Ingresa valores mayores a cero');return}data.trips.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),km,amount:Math.round(amount),date:new Date().toISOString()});save();render();e.target.reset();$('km').focus();notify('Viaje guardado')});
+      $('history').addEventListener('click',e=>{const btn=e.target.closest('.delete');if(!btn)return;if(confirm('¿Eliminar este viaje?')){data.trips=data.trips.filter(t=>t.id!==btn.dataset.id);save();render();notify('Viaje eliminado')}});
+      $('openSettings').addEventListener('click',()=>{$('goalInput').value=data.goal;$('greenInput').value=data.green;$('yellowInput').value=data.yellow;$('settings').showModal()});
+      $('settingsForm').addEventListener('submit',e=>{e.preventDefault();const goal=parseValue($('goalInput').value),green=parseValue($('greenInput').value),yellow=parseValue($('yellowInput').value);if(![goal,green,yellow].every(n=>Number.isFinite(n)&&n>0)){notify('Completa los valores correctamente');return}if(green<=yellow){notify('El umbral verde debe ser mayor');return}data.goal=Math.round(goal);data.green=Math.round(green);data.yellow=Math.round(yellow);save();render();$('settings').close();notify('Ajustes guardados')});
+      $('clearData').addEventListener('click',()=>{if(data.trips.length&&confirm('¿Eliminar todo el historial? Esta acción no se puede deshacer.')){data.trips=[];save();render();$('settings').close();notify('Historial eliminado')}});
+      render();
+    })();
+  </script>
+</body>
+</html>
