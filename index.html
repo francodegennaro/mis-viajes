@@ -67,7 +67,7 @@
   })();
   </script>
   <script>
-    (()=>{const keyName='mis-viajes-mapbox-key-v1',field=document.getElementById('mapboxToken');document.getElementById('openSettings').addEventListener('click',()=>{field.value=localStorage.getItem(keyName)||''});document.getElementById('settingsForm').addEventListener('submit',()=>{const token=field.value.trim();if(token)localStorage.setItem(keyName,token);else localStorage.removeItem(keyName)})})();
+    (()=>{const nativeFetch=window.fetch.bind(window);window.fetch=(input,options)=>{if(typeof input==='string'&&input.includes('api.mapbox.com/directions/v5/mapbox/driving-traffic')){const url=new URL(input);url.searchParams.delete('depart_at');input=url.toString()}return nativeFetch(input,options)};const keyName='mis-viajes-mapbox-key-v1',field=document.getElementById('mapboxToken');document.getElementById('openSettings').addEventListener('click',()=>{field.value=localStorage.getItem(keyName)||''});document.getElementById('settingsForm').addEventListener('submit',()=>{const token=field.value.trim();if(token)localStorage.setItem(keyName,token);else localStorage.removeItem(keyName)})})();
   </script>
 </body>
 </html>
